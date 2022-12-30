@@ -1,3 +1,31 @@
+<?php
+ob_start();
+session_start();
+include 'baglan.php';
+
+//Belirli veriyi seçme işlemi
+$ayarsor=$db->prepare("SELECT * FROM bilgilerim where bilgiler_id=:id");
+$ayarsor->execute(array(
+  'id' => 0
+  ));
+$ayarcek=$ayarsor->fetch(PDO::FETCH_ASSOC);
+
+
+$kullanicisor=$db->prepare("SELECT * FROM bilgilerim where bilgiler_mail=:mail");
+$kullanicisor->execute(array(
+  'mail' => $_SESSION['bilgiler_mail']
+  ));
+$say=$kullanicisor->rowCount();
+$kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
+
+if ($say==0) {
+
+  Header("Location:login.php?durum=izinsiz");
+  exit;
+
+}
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -27,13 +55,13 @@
               <div class="col-sm-12 col-md">
                 <div class="heading text-center my-5">
                   <h3>Hoşgeldiniz</h3>
-                  <h1>Oğuz Emre Turan</h1>
+                  <h1><?php echo $kullanicicek ['bilgiler_ad']  ?> <?php echo $kullanicicek ['bilgiler_soyad']  ?></h1>
                 </div>
               </div>
               <div class="col-sm-12 col-md img text-center">
                 <img class="im" src="img/oguzlogo.png" class="img-fluid pt-2">
               </div>
-            </div>
+            </div>  
 
       
           <br>
@@ -57,6 +85,30 @@
                     <br>
                     <a href="transfermoney.php"><button>EFT/yada Havale</button></a>
                   </div>
+
+                  <div class="col-md act">
+                   
+                    <br>
+                    <br>
+                    <br>
+                    <a href="Doviz.php"><button>Döviz Kuru</button></a>
+                  </div>
+
+                  <div class="col-md act">
+                   
+                    <br>
+                    <br>
+                    <br>
+                    <a href="moneyup.php"><button>Para Yatırma</button></a>
+                  </div>
+
+                  <div class="col-md act">
+                   
+                   <br>
+                   <br>
+                   <br>
+                   <a href="moneydown.php"><button>Para Çekme</button></a>
+                 </div>
                   
             </div>
            

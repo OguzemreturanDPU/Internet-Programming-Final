@@ -62,11 +62,11 @@ if(isset($_POST['submit']))
                 
                 $gonderen = $sql1['bilgiler_ad'];
                 $alıcı = $sql2['bilgiler_ad'];
-                $sql = "INSERT INTO islem(`gonderen`, `alıcı`, `bakiye`) VALUES ('$gonderen','$alıcı','$amount')";
+                $sql = "INSERT INTO islem(`gonderen`, `alıcı`, `bakiye`, `datetime` ) VALUES ('$gonderen','$alıcı','$amount', CURRENT_TIMESTAMP)";
                 $query=mysqli_query($conn,$sql);
 
                 if($query){
-                     echo "<script> alert('islem Successful');
+                     echo "<script> alert('İşlem Başarılı');
                                      window.location='transfermoney.php';
                            </script>";
                     

@@ -25,7 +25,7 @@
             <tr>
                 
                 <th class="text-center">Alıcı</th>
-                <th class="text-center">Satıcı</th>
+                <th class="text-center">Gonderen</th>
                 <th class="text-center">Miktar</th>
                 <th class="text-center">Tarih ve Zaman</th>
             </tr>

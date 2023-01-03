@@ -1,3 +1,33 @@
+<?php
+ob_start();
+session_start();
+include 'baglan.php';
+
+
+$ayarsor=$db->prepare("SELECT * FROM bilgilerim where bilgiler_id=:id");
+$ayarsor->execute(array(
+  'id' => 0
+  ));
+$ayarcek=$ayarsor->fetch(PDO::FETCH_ASSOC);
+
+
+$kullanicisor=$db->prepare("SELECT * FROM bilgilerim where bilgiler_mail=:mail");
+$kullanicisor->execute(array(
+  'mail' => $_SESSION['bilgiler_mail']
+  ));
+$say=$kullanicisor->rowCount();
+$kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
+
+if ($say==0) {
+
+  Header("Location:login.php?durum=izinsiz");
+  exit;
+  $kullanicicek['bilgiler_ad'];
+
+}
+ 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,9 +53,9 @@
     <table class="table table-hover table-striped table-condensed table-bordered">
         <thead>
             <tr>
-                
-                <th class="text-center">Alıcı</th>
+            <th class="text-center">Yapılan İşlem</th>
                 <th class="text-center">Gonderen</th>
+                <th class="text-center">Alıcı</th>
                 <th class="text-center">Miktar</th>
                 <th class="text-center">Tarih ve Zaman</th>
             </tr>
@@ -33,18 +63,21 @@
         <tbody>
         <?php
 
-            include 'config.php';
+           include 'config.php';
 
-            $sql ="select * from islem";
-
-            $query =mysqli_query($conn, $sql);
+            $adinedir = $_SESSION['gonderen'];
+            $sad=$_POST['gonderen'];
+            $sql ="SELECT * FROM islem
+            WHERE gonderen='".$kullanicicek["bilgiler_ad"]."'";
+            
+            $query =mysqli_query($conn, $sql); 
 
             while($rows = mysqli_fetch_assoc($query))
             {
         ?>
 
             <tr>
-            
+            <td class="py-2"><?php echo $rows['yapilanislem']; ?></td>
             <td class="py-2"><?php echo $rows['gonderen']; ?></td>
             <td class="py-2"><?php echo $rows['alıcı']; ?></td>
             <td class="py-2"><?php echo $rows['bakiye']; ?> </td>

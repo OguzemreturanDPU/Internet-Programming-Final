@@ -20,6 +20,14 @@
               </li>
 
               <li class="nav-item">
+                <a class="nav-link" href="iletisim.php">İletişim</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="grafik.php">Grafik</a>
+              </li>
+
+              <li class="nav-item">
                 <a class="nav-link" href="transactionhistory.php">Geçmiş</a>
               </li>
 

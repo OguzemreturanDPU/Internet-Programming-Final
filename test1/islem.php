@@ -52,6 +52,7 @@ if(isset($_POST['giris'])){
         $say = $kullanici_sor->rowCount();
         if($say==1){
             $_SESSION['bilgiler_mail']=$bilgiler_mail;
+         
             echo "Başarıyla Giriş Yaptınız";
             header('Refresh:2; AnaSayfa.php');
         } else {
@@ -59,7 +60,6 @@ if(isset($_POST['giris'])){
         }
     }
 }
-
 
 
 ?>

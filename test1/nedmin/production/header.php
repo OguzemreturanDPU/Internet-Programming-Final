@@ -61,6 +61,7 @@ if (!isset($_SESSION['kullanici_mail'])) {
   <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
   <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
   <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+  
 
   <!-- Ck Editör -->
   <script src="https://cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
@@ -71,6 +72,7 @@ if (!isset($_SESSION['kullanici_mail'])) {
 </head>
 
 <body class="nav-md">
+  
   <div class="container body">
     <div class="main_container">
       <div class="col-md-3 left_col">
@@ -101,15 +103,19 @@ if (!isset($_SESSION['kullanici_mail'])) {
               <h3>General</h3>
               <ul class="nav side-menu">
 
-                <li><a href="index.php"><i class="fa fa-home"></i> Anasayfa </a></li>
+                <li><a href="index.php"><i class="fa fa-home"></i> Admin Anasayfa </a></li>
 
-                <li><a href="hakkimizda.php"><i class="fa fa-info"></i> Hakkımızda </a></li>
+                <li><a href="hakkimizda.php"><i class="fa fa-info"></i>Hakkımızda </a></li>
 
-                <li><a href="kullanici.php"><i class="fa fa-user"></i> Kullanıcılar </a></li>
+                <li><a href="kullanici.php"><i class="glyphicon glyphicon-inbox"></i>  Admin Bilgileri </a></li>
 
-                <li><a href="bilgiler.php"><i class="fa fa-user"></i> Bilgiler </a></li>
+                <li><a href="adminekle.php"><i class="glyphicon glyphicon-plus"></i>  Admin Kayıt İşlemi </a></li>
 
-                <li><a href="index1.php"><i class="fa fa-user"></i> Kayıt İşlemi </a></li>
+                <li><a href="bilgiler.php"><i class="glyphicon glyphicon-inbox"></i>  Müşteri Bilgileri </a></li>
+
+                <li><a href="index1.php"><i class="glyphicon glyphicon-plus"></i>  Müşteri Kayıt İşlemi </a></li>
+
+                <li><a href="islembilgi.php"><i class="glyphicon glyphicon-credit-card"></i>  Banka İşlem Bilgileri </a></li>
 
 
                 <li><a><i class="fa fa-cogs"></i> Site Ayarları <span class="fa fa-cogs"></span></a>

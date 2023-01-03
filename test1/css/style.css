@@ -5,10 +5,10 @@
 	font-family: sans-serif;
 }
 .intro{
-	background: #EAF0F1;
+	background-color: #d39e00;
 }
 h1{
-	color: #317e2e;
+	color: #212529;
 	font-weight: bold;
 	transition: 0.5s;
 	text-align: center;

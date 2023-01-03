@@ -3,7 +3,7 @@
 include 'header.php'; 
 
 //Belirli veriyi seçme işlemi
-$kullanicisor=$db->prepare("SELECT * FROM adminkullanici");
+$kullanicisor=$db->prepare("SELECT * FROM islem");
 $kullanicisor->execute();
 
 
@@ -19,7 +19,7 @@ $kullanicisor->execute();
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Admin Kullanıcıları<small>,
+            <h2>İşlem Bilgileri<small>,
 
               <?php 
 
@@ -58,12 +58,11 @@ $kullanicisor->execute();
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
                 <tr>
-                  <th>Kayıt Tarih</th>
-                  <th>Ad Soyad</th>
-                  <th>Şifre</th>
-                  <th>Mail Adresi</th>
-                  <th>Telefon</th>  
-                  <th>Yetki</th>
+                  <th>İşlem Tarihi</th>
+                  <th>Gönderen</th>
+                  <th>Alıcı</th>
+                  <th>İşlem Türü</th>
+                  <th>Tutar</th>
                   <th>İşlem</th>
                   <th>İşlem</th>
                 </tr>
@@ -73,7 +72,7 @@ $kullanicisor->execute();
 
                 <?php 
 
-               $bilgilerimsor=$db->prepare("SELECT * from adminkullanici");
+               $bilgilerimsor=$db->prepare("SELECT * from islem");
                $bilgilerimsor->execute();
 
                $say=0;
@@ -82,14 +81,13 @@ $kullanicisor->execute();
 
 
                 <tr>
-                  <td><?php echo $bilgilerimcek['kullanici_zaman'] ?></td>
-                  <td><?php echo $bilgilerimcek['kullanici_adsoyad'] ?></td>
-                  <td><?php echo $bilgilerimcek['kullanici_password'] ?></td>
-                  <td><?php echo $bilgilerimcek['kullanici_mail'] ?></td>
-                  <td><?php echo $bilgilerimcek['kullanici_gsm'] ?></td>
-                  <td><?php echo $bilgilerimcek['kullanici_yetki'] ?></td>
-                  <td><center><a href="duzenle1.php?kullanici_id=<?php echo $bilgilerimcek['kullanici_id'] ?>"><button class="btn btn-primary btn-xs">Düzenle</button></center></td></a>
-                  <td align="center"><a href="islem1.php?kullanici_id=<?php echo $bilgilerimcek['kullanici_id'] ?>&bilgilerimsil1=ok"><button class="btn btn-danger btn-xs">Sil</button></td></a>
+                  <td><?php echo $bilgilerimcek['datetime'] ?></td>
+                  <td><?php echo $bilgilerimcek['gonderen'] ?></td>
+                  <td><?php echo $bilgilerimcek['alıcı'] ?></td>
+                  <td><?php echo $bilgilerimcek['yapilanislem'] ?></td>
+                  <td><?php echo $bilgilerimcek['bakiye'] ?></td>
+                  <td><center><a href="islemdüzenle.php?sno=<?php echo $bilgilerimcek['sno'] ?>"><button class="btn btn-primary btn-xs">Düzenle</button></center></td></a>
+                  <td align="center"><a href="islem1.php?sno=<?php echo $bilgilerimcek['sno'] ?>&bilgilerimsil2=ok"><button class="btn btn-danger btn-xs">Sil</button></td></a>
                 </tr>
 
 

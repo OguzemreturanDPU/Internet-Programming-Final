@@ -68,13 +68,17 @@ span.psw {
   }
 }
       </style>
-    <title>Login</title>
+    <title>OGUZ BANK Login</title>
   </head>
   <body>
 
- <center> <h2>Giriş Yap</h2> <center>
+ <center> <h1>OGUZ BANK LOGIN</h1> <center>
 
 <form action="islem.php" method="post">
+<div class="imgcontainer">
+<img src="img/bankwallpaper.jpg"  width="1600" height="600">
+  </div>
+
   <div class="imgcontainer">
     <img src="img/avatar.png" alt="Avatar" class="avatar">
   </div>

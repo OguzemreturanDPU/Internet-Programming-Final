@@ -22,8 +22,12 @@ if ($say==0) {
 
   Header("Location:login.php?durum=izinsiz");
   exit;
+ $_SESSION['kadicek'] = $kullanicicek['bilgiler_ad'];
 
 }
+
+
+
 ?>
 
 <!doctype html>
@@ -61,8 +65,46 @@ if ($say==0) {
               <div class="col-sm-12 col-md img text-center">
                 <img class="im" src="img/oguzlogo.png" class="img-fluid pt-2">
               </div>
-            </div>  
-
+            </div> 
+            <br>
+            <br>
+            <br>
+            <section class="vh-40" style="background-color: #FFFFFF;">
+  <div class="container py-1 h-50">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-md-8 col-lg-50 col-xl-60">
+        <div class="card" style="border-radius: 15px;">
+          <div class="card-body p-4">
+            <div class="d-flex text-black">
+              <div class="flex-shrink-0">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                  alt="Generic placeholder image" class="img-fluid"
+                  style="width: 180px; border-radius: 10px;">
+              </div>
+              <div class="flex-grow-1 ms-3">
+                <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                  style="background-color: #efefef;">
+                  <div class="px-3">
+                    <p class="small text-muted mb-1">Mail</p>
+                    <p class="mb-0"><?php echo $kullanicicek ['bilgiler_mail']  ?></p>
+                  </div>
+                  <div>
+                    <p class="small text-muted mb-1">Yaş</p>
+                    <p class="mb-0"><?php echo $kullanicicek ['bilgiler_yas']  ?></p>
+                  </div>
+                  <div  class="px-3">
+                    <p class="small text-muted mb-1">Mevcut Bakiye</p>
+                    <p class="mb-1"><?php echo $kullanicicek ['bakiye']  ?> TL</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
       
           <br>
           <br>

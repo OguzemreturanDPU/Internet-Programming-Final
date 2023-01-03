@@ -59,15 +59,17 @@ if(isset($_POST['submit']))
                 $newbalance = $sql2['bakiye'] + $amount;
                 $sql = "UPDATE bilgilerim set bakiye=$newbalance where bilgiler_id=$to";
                 mysqli_query($conn,$sql);
-                
+
+
+                $yapilanislem = "EFT/Havale";
                 $gonderen = $sql1['bilgiler_ad'];
                 $alıcı = $sql2['bilgiler_ad'];
-                $sql = "INSERT INTO islem(`gonderen`, `alıcı`, `bakiye`, `datetime` ) VALUES ('$gonderen','$alıcı','$amount', CURRENT_TIMESTAMP)";
+                $sql = "INSERT INTO islem(`yapilanislem`,`gonderen`, `alıcı`, `bakiye`, `datetime` ) VALUES ('$yapilanislem','$gonderen','$alıcı','$amount', CURRENT_TIMESTAMP)";
                 $query=mysqli_query($conn,$sql);
 
                 if($query){
                      echo "<script> alert('İşlem Başarılı');
-                                     window.location='transfermoney.php';
+                                     window.location='AnaSayfa.php';
                            </script>";
                     
                 }

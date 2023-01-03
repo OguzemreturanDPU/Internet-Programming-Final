@@ -51,23 +51,56 @@ $kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
 ?>
 
 	<div class="container">
-        <h2 class="text-center pt-4">Para Yatırma</h2>
+        <h2 class="text-center pt-4">Para Çekme</h2>
             <?php
                 include 'config.php';
 
 
 if(isset($_POST['submit']))
 {
-   $eklenecekdolar = $_POST['amount'];
-   $mevcutdolar = $kullanicicek ['bakiye'];
-   $dolar = $mevcutdolar  - $eklenecekdolar;
+    if (($_POST['amount'])<0)
+   {
+        echo '<script type="text/javascript">';
+        echo ' alert("Negatif Değerler Transfer Edilemez")';
+        echo '</script>';
+    }
 
+    else if (($_POST['amount'])>10000)
+   {
+        echo '<script type="text/javascript">';
+        echo ' alert("Merkez Bankası Kuralları Gereğince En fazla 10000 TL para çekebilirsin")';
+        echo '</script>';
+    }
+   
+    else if($_POST['amount'] == 0){
+
+         echo "<script type='text/javascript'>";
+         echo "alert('0 Miktarı Transfer Edilemez')";
+         echo "</script>";
+     }
+     else
+     {
+        $yapilanislem = "Para Cekme";
+        $eklenecekdolar = $_POST['amount'];
+        $mevcutdolar = $kullanicicek ['bakiye'];
+        $dolar = $mevcutdolar - $eklenecekdolar;
+     
+        $sql = "UPDATE bilgilerim set bakiye=bakiye-".$_POST['amount']." where bilgiler_id=".$kullanicicek['bilgiler_id'];
+        mysqli_query($conn,$sql);
+
+        $gonderen = $kullanicicek ['bilgiler_ad'];
+                $alıcı = $kullanicicek ['bilgiler_ad'];
+                $sql = "INSERT INTO islem(`yapilanislem`,`gonderen`, `alıcı`, `bakiye`, `datetime` ) VALUES ('$yapilanislem','$gonderen','$alıcı','$eklenecekdolar', CURRENT_TIMESTAMP)";
+                $query=mysqli_query($conn,$sql);
+
+                if($query){
+                     echo "<script> alert('İşlem Başarılı');
+                                     window.location='AnaSayfa.php';
+                           </script>";
+                }
+     }
    
 
-
-
-   //$sql = "UPDATE bilgilerim set bakiye=$mevcutdolar where bilgiler_id=$";
-   mysqli_query($conn,$sql);
 
 }
 
@@ -80,7 +113,6 @@ if(isset($_POST['submit']))
                     <th class="text-center">İsim</th>
                     <th class="text-center">E-mail</th>
                     <th class="text-center">Bakiye</th>
-                    <th class="text-center"><?php echo $dolar; ?></th>
                 </tr>
                
                 <tr>
@@ -98,7 +130,7 @@ if(isset($_POST['submit']))
             <input type="number" class="form-control" name="amount" required>   
             <br><br>
                 <div class="text-center" >
-            <button class="btn mt-3" name="submit" type="submit" id="myBtn">Para Yatır</button>
+            <button class="btn mt-3" name="submit" type="submit" id="myBtn">Para Çekme</button>
             </div>
         </form>
     </div>

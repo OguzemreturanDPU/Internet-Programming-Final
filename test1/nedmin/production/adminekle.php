@@ -61,12 +61,12 @@ body {
 	
     <form action="islem1.php" method="POST">
 		
-		<input type="text" required="" name="bilgiler_ad" placeholder="Adınızı Giriniz...">
-		<input type="text" required="" name="bilgiler_soyad" placeholder="Soyadınızı Giriniz...">
-		<input type="email" required="" name="bilgiler_mail" placeholder="Mail Giriniz...">
-		<input type="text" required="" name="bilgiler_yas" placeholder="Yaş Giriniz...">
-		<input type="text" required="" name="bakiye" placeholder="Bakiye Giriniz...">
-		<button type="submit" name="insertislemi">Yeni Müşteri Ekle</button>
+		<input type="text" required="" name="kullanici_adsoyad" placeholder="Ad Ve Soyad Giriniz...">
+		<input type="text" required="" name="kullanici_password" placeholder="Şifre Giriniz...">
+		<input type="email" required="" name="kullanici_mail" placeholder="Mail Giriniz...">
+        <input type="text" required="" name="kullanici_gsm" placeholder="Tel Giriniz...">
+		<input type="text" required="" name="kullanici_yetki" placeholder="Yetkisini Giriniz...">
+		<button type="submit" name="insertislemi1">Admin Kullanici Kaydet</button>
 		<center>
 
 	</form>

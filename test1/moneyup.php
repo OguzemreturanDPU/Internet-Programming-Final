@@ -58,15 +58,58 @@ $kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
 
 
 if(isset($_POST['submit']))
-{
-   $eklenecekdolar = $_POST['amount'];
-   $mevcutdolar = $kullanicicek ['bakiye'];
-   $dolar = $eklenecekdolar + $mevcutdolar;
 
-   $sql = "UPDATE bilgilerim set bakiye=bakiye+".$_POST['amount']." where bilgiler_id=".$kullanicicek['bilgiler_id'];
-   mysqli_query($conn,$sql);
+{
+    if (($_POST['amount'])<0)
+   {
+        echo '<script type="text/javascript">';
+        echo ' alert("Negatif Değerler Transfer Edilemez")';
+        echo '</script>';
+    }
+
+    else if (($_POST['amount'])>5000)
+   {
+        echo '<script type="text/javascript">';
+        echo ' alert("Merkez Bankası Kuralları Gereğince En fazla 5000 TL para yatırabilirsin")';
+        echo '</script>';
+    }
+    
+
+
+   
+    else if($_POST['amount'] == 0){
+
+         echo "<script type='text/javascript'>";
+         echo "alert('0 Miktarı Transfer Edilemez')";
+         echo "</script>";
+     }
+     else
+     {
+        $yapilanislem = "Para Yatırma";
+        $eklenecekdolar = $_POST['amount'];
+        $mevcutdolar = $kullanicicek ['bakiye'];
+        $dolar = $eklenecekdolar + $mevcutdolar;
+     
+        $sql = "UPDATE bilgilerim set bakiye=bakiye+".$_POST['amount']." where bilgiler_id=".$kullanicicek['bilgiler_id'];
+        mysqli_query($conn,$sql);
+
+        $gonderen = $kullanicicek ['bilgiler_ad'];
+                $alıcı = $kullanicicek ['bilgiler_ad'];
+                $sql = "INSERT INTO islem(`yapilanislem`,`gonderen`, `alıcı`, `bakiye`, `datetime` ) VALUES ('$yapilanislem','$gonderen','$alıcı','$eklenecekdolar', CURRENT_TIMESTAMP)";
+                $query=mysqli_query($conn,$sql);
+
+                if($query){
+                     echo "<script> alert('İşlem Başarılı');
+                                     window.location='AnaSayfa.php';
+                           </script>";
+                }
+     }
+   
+
+   
 
 }
+
 
             ?>
             <form method="post" name="tcredit" class="tabletext" ><br>
@@ -77,7 +120,6 @@ if(isset($_POST['submit']))
                     <th class="text-center">İsim</th>
                     <th class="text-center">E-mail</th>
                     <th class="text-center">Bakiye</th>
-                    <th class="text-center"><?php echo $dolar; ?></th>
                 </tr>
                
                 <tr>

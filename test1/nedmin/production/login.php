@@ -78,7 +78,7 @@
               </div>
 
               <li class="nav-item">
-                <a class="nav-link" href="../../AnaSayfa.php"><i class="fa fa-bank">OGUZ BANK</i></a>
+                <a class="nav-link" href="../../AnaSayfa.php"><i class="fa fa-bank">ANA SAYFA</i></a>
               </li>
             </div>
           </form>
